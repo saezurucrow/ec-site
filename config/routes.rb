@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   post '/update_item' => 'carts#delete_item'
   delete '/delete_item' => 'carts#delete_item'
 
-  root 'users#index'
+  root 'products#index'
 end

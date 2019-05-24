@@ -1,2 +1,19 @@
-<h1>Products#index</h1>
+<h1>商品一覧</h1>
 <p>Find me in app/views/products/index.html.erb</p>
+
+<table>
+
+<% @products.each do |product| %>
+<tr>
+	<td>名前：<%= product.name %></td>
+	<td>値段：<%= product.price %></td>
+	<td>アーティスト：<%= product.artist %></td>
+	<td>レーベル：<%= product.label %></td>
+	<td>ジャンル：<%= product.genre %></td>
+	<td>曲名：<%= product.music %></td>
+	<td>在庫数：<%= product.stock %></td>
+</tr>
+
+<% end %>
+
+</table>
