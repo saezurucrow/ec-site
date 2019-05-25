@@ -1,0 +1,29 @@
+<%= form_for(@product) do |f| %>
+
+	<%= f.label :ジャケット画像 %>
+	<%= f.attachment_field :jacket %><br />
+
+	<%= f.label :アルバム名 %>
+	<%= f.text_field :name %><br />
+
+	<%= f.label :アーティスト %>
+	<%= f.text_field :artist %><br />
+
+	<%= f.label :価格 %>
+	<%= f.text_field :price %><br />
+
+	<%= f.label :レーベル  %>
+	<%= f.text_field :label  %><br />
+
+	<%= f.label :ジャンル %>
+	<%= f.text_field :genre %><br />
+
+	<%= f.label :曲名 %>
+	<%= f.text_field :music %><br />
+
+	<%= f.label :在庫数 %>
+	<%= f.text_field :stock %><br />
+
+	<%= f.submit :投稿 %>
+
+<% end %>

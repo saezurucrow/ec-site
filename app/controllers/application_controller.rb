@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :name_kana, :postal_code, :address, :tel])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :name_kana, :postal_code, :address, :tel])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :name_kana, :postal_code, :address, :tel])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :name_kana, :postal_code, :address, :tel,:image_id])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :name_kana, :postal_code, :address, :tel,:image_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :name_kana, :postal_code, :address, :tel,:image_id])
   end
 
     helper_method :current_cart

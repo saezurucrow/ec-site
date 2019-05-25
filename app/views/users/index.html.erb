@@ -1,1 +1,6 @@
-indexページ
+<h1>User一覧ページ</h1>
+
+<% @users.each do |user| %>
+	名前：<%= user.name %><br />
+	<%= link_to '詳細',user_path(user) %>
+<% end %>

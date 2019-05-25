@@ -1,0 +1,11 @@
+<h1>ユーザー詳細</h1>
+
+名前：<%= @user.name %><br />
+名前（カナ）：<%= @user.name_kana %><br />
+郵便番号：<%= @user.postal_code %><br />
+住所：<%= @user.address %><br />
+電話番号：<%= @user.tel %><br />
+メールアドレス；<%= @user.email %><br />
+
+<%= link_to "変更",edit_user_path(@user) %>
+
