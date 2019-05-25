@@ -17,10 +17,9 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.new(user_params)
-		if @user.update(user_params)
+		if @user.update(user_params) #Unpermitted parameter: :image←多分アソシエーションが問題
 			redirect_to users_path
 		else
-			render 'edit'
 		end
 	end
 
