@@ -7,6 +7,10 @@ class ProductsController < ApplicationController
   	@product = Product.new
   end
 
+  def edit
+  	@product  = Product.find_by(params[:id])
+  end
+
   def create
   	@product = Product.new(product_params)
   	if @product.save
@@ -14,6 +18,15 @@ class ProductsController < ApplicationController
   	else
   		render "new"
   	end
+  end
+
+  def update
+    @product = Product.find_by(params[:id])
+    if @product.update(product_params)
+      redirect_to product_path(@product)
+    else
+      render 'edit'
+    end
   end
 
   private
