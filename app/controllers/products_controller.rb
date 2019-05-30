@@ -11,10 +11,14 @@ class ProductsController < ApplicationController
   	@product  = Product.find_by(params[:id])
   end
 
+  def show
+    @product = Product.find_by(params[:id])
+  end
+
   def create
   	@product = Product.new(product_params)
   	if @product.save
-  		redirect_to products_path
+  		redirect_to product_path(@product)
   	else
   		render "new"
   	end
@@ -29,9 +33,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    product = Product.find_by(params[:id])
+    if product.destroy
+      redirect_to products_path
+    else
+      redirect_to products_path
+    end
+  end
+
   private
 
   def product_params
-  	params.require(:product).permit(:name,:artist,:jacket_id,:price,:label,:genre,:music,:stock)
+  	params.require(:product).permit(:name,:artist,:jacket,:price,:label,:genre,:music,:stock)
   end
 end

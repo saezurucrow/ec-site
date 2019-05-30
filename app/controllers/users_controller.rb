@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		@user = User.new(user_params)
+		@user = User.find_by(params[:id])
 		if @user.update(user_params) #Unpermitted parameter: :image←多分アソシエーションが問題
 			redirect_to users_path
 		else
@@ -26,6 +26,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name,:name_kana,:image_id,:address,:postal_code,:tel,:email)
+		params.require(:user).permit(:name,:name_kana,:image,:address,:postal_code,:tel,:email)
 	end
 end

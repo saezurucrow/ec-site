@@ -1,1 +1,15 @@
 <h1>詳細ページ</h1>
+
+<table>
+	<tr>
+		<td>ジャケット：<%= attachment_image_tag @product, :jacket, :fill, 50, 50, format: 'jpeg',fallback: "no_image.jpg" %> </td>
+		<td>タイトル：<%= @product.name %> </td>
+		<td>値段：<%= @product.price %> </td>
+		<td>アーティスト：<%= @product.artist %> </td>
+		<td>レーベル：<%= @product.label %> </td>
+		<td>ジャンル：<%= @product.genre %> </td>
+		<td>曲名：<%= @product.music %> </td>
+		<td>在庫数：<%= @product.stock %> </td>
+		<td><%= link_to '編集',edit_product_path(@product) %></td>
+	</tr>
+</table>

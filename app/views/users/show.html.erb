@@ -1,5 +1,7 @@
 <h1>ユーザー詳細</h1>
 
+<table>
+アイコン：<%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg',fallback: "no_image.jpg" %><br />
 名前：<%= @user.name %><br />
 名前（カナ）：<%= @user.name_kana %><br />
 郵便番号：<%= @user.postal_code %><br />
@@ -8,4 +10,6 @@
 メールアドレス；<%= @user.email %><br />
 
 <%= link_to "編集",edit_user_path(@user) %>
+
+<table>
 
