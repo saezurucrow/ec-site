@@ -19,9 +19,12 @@
 
 	<%= f.label :ジャンル %>
 	<%= f.text_field :genre %><br />
-
-	<%= f.label :曲名 %>
-	<%= f.text_field :music %><br />
+	
+    <%= form.fields_for :music do |f| %>
+      <%= f.label "曲名" %>
+      <%= render "music_fields", f: f %>
+    <% end %>
+    <%= link_to_add_association "曲名を追加", form, :music %>
 
 	<%= f.label :在庫数 %>
 	<%= f.text_field :stock %><br />
