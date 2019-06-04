@@ -21,7 +21,9 @@
 			<td><%= product.artist %> </td>
 			<td><%= product.label %> </td>
 			<td><%= product.genre %> </td>
-			<td><%= product.music %> </td>
+			<td><% product.musics.each do |music| %>
+				<%= music.name %>
+			<% end %></td>
 			<td><%= product.stock %> </td>
 			<td><%= link_to '詳細',product_path(product) %> </td>
 			<td><%= link_to '削除',product_path(product), method: :delete,"data-confirm" => "本当に削除しますか？" %> </td>

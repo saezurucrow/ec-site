@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   def new
   	@product = Product.new
-    @product.music.build
+    @product.musics.build
   end
 
   def edit
@@ -46,6 +46,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-  	params.require(:product).permit(:name,:artist,:jacket,:price,:label,:genre,:stock,music_attributes: [:id, :name, :_destroy])
+  	params.require(:product).permit(:name,:artist,:jacket,:price,:label,:genre,:stock,musics_attributes: [:id, :name, :_destroy])
   end
 end

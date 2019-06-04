@@ -1,4 +1,4 @@
-<h1></h1>
+<h1>アルバム追加</h1>
 
 <%= form_for(@product) do |f| %>
 
@@ -19,12 +19,14 @@
 
 	<%= f.label :ジャンル %>
 	<%= f.text_field :genre %><br />
-	
-    <%= form.fields_for :music do |f| %>
+
+    <%= f.fields_for :musics do |f| %>
       <%= f.label "曲名" %>
       <%= render "music_fields", f: f %>
     <% end %>
-    <%= link_to_add_association "曲名を追加", form, :music %>
+    <div class="links">
+    <%= link_to_add_association "曲名を追加", f, :musics %><br />
+	</div>
 
 	<%= f.label :在庫数 %>
 	<%= f.text_field :stock %><br />

@@ -8,7 +8,11 @@
 		<td>アーティスト：<%= @product.artist %> </td>
 		<td>レーベル：<%= @product.label %> </td>
 		<td>ジャンル：<%= @product.genre %> </td>
-		<td>曲名：<%= @product.music %> </td>
+		<td>曲名：
+			<% @product.musics.each do |music| %>
+				<%= music.name %>
+			<% end %>
+		</td>
 		<td>在庫数：<%= @product.stock %> </td>
 		<td><%= link_to '編集',edit_product_path(@product) %></td>
 	</tr>
