@@ -1,7 +1,24 @@
 # README
 
-Railsで作るCDショップサイト（仮）
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-検索機能、cocoon(終)、cart機能、管理者機能（gem使わず）を導入予定
+Things you may want to cover:
 
-現在設計図製作中
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
