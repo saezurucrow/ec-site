@@ -1,0 +1,2 @@
+class OrderShow < ApplicationRecord
+end
