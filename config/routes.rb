@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index,:show,:edit,:destroy,:update]
-  end
-
-  namespace :admin do
     resources :orders, only: [:index,:show,:edit,:update]
-  end
-  namespace :admin do
     resources :products
     get 'products/search'
   end
@@ -22,4 +17,6 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index,:show]
   get 'products/search'
+
+  root 'products#index'
 end
