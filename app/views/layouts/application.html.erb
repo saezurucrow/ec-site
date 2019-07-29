@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EcSite</title>
+    <title>ec-site</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,9 @@
   </head>
 
   <body>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
     <%= yield %>
   </body>
 </html>
