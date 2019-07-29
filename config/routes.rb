@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :products, only: [:index,:show]
   get 'products/search'
 
-  root 'products# index'
+  root 'products#index'
 end
