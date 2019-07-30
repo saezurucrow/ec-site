@@ -18,8 +18,15 @@
 
 body {
   padding-top: 70px;
-}
 
-.title {
-  font-size: 35px;
+  header {
+    .title {
+      font-size: 35px;
+      color: white;
+    }
+
+    .search {
+      color: white;
+    }
+  }
 }
