@@ -1,2 +1,16 @@
-<h1>Admin::Products#new</h1>
-<p>Find me in app/views/admin/products/new.html.erb</p>
+<h1>新規商品登録</h1>
+
+<%= form_for(@product),do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+
+  <%= f.label :stock %>
+  <%= f.text_field :stock %>
+
+  <%= f.label :product_status %>
+  <%= f.text_field :product_status %>
+
+<% end %>

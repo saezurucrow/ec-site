@@ -1,9 +1,9 @@
 <h1>商品一覧</h1>
 
 <% @products.each do |product| %>
-<div class="product">
-  <p><%= product.name %></p>
-  <p>価格：<%= product.price %></p>
-  <p>在庫数：<%= product.stock %></p>
-</div>
+  <div class="product-box">
+    <p><%= product.name %></p>
+    <p>価格：<%= product.price %></p>
+    <p>在庫数：<%= product.stock %></p>
+  </div>
 <% end %>
