@@ -2,7 +2,9 @@
 
 <% @products.each do |product| %>
   <div class="product-box">
-    <p><%= attachment_image_tag @product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></p>
+    <%= link_to product_path(product) do %>
+    <p><%= attachment_image_tag product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></p>
+    <% end %>
     <p><%= product.name %></p>
     <p>価格：<%= product.price %></p>
     <p>在庫数：<%= product.stock %></p>
