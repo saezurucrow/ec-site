@@ -20,13 +20,21 @@ body {
   padding-top: 70px;
 
   header {
+
+    .navbar-left{
+      display: flex;
+    }
+
     .title {
       font-size: 35px;
       color: white;
+      width: 250px;
     }
 
-    .search {
-      color: white;
+    .search-form {
+      padding: 3% 0;
+      margin-left: 3%;
+      width: 250px;
     }
   }
 }
