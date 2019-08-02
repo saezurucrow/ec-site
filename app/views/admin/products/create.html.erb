@@ -1,2 +1,18 @@
-<h1>Admin::Products#create</h1>
-<p>Find me in app/views/admin/products/create.html.erb</p>
+<h1>商品登録</h1>
+
+<%= form_for(post_book, url: post_books_path) do |f| %>
+      <div class="form-group has-icon">
+
+        <label class="control-label">Title</label><br />
+
+        <%= f.text_field :title, class:"form-control", placeholder:"" %>
+
+        <span class="fa fa-building form-control-icon" aria-hidden="true"></span>
+
+      <label class="control-label">Opinion</label><br />
+
+      <%= f.text_area :opinion, class:"form-control", rows:"2", placeholder:"" %><br>
+
+  <%= f.submit "create book", class:"btn btn-primary btn-block " %>
+
+<% end %>
