@@ -1,16 +1,30 @@
-<h1>新規商品登録</h1>
+<h1>商品登録</h1>
 
-<%= form_for(@product),do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, :autofocus => true %>
+<%= form_for(@product,url: admin_products_path) do |f| %>
 
-  <%= f.label :price %>
-  <%= f.text_field :price %>
+  <p><%= f.label :商品名 %>
+  <%= f.text_field :name %></p>
 
-  <%= f.label :stock %>
-  <%= f.text_field :stock %>
+  <p><%= f.label :価格 %>
+  <%= f.text_field :price %>円</p>
 
-  <%= f.label :product_status %>
-  <%= f.text_field :product_status %>
+  <p><%= f.label :ジャケット画像 %>
+  <%= f.attachment_field :jacket, placeholder: "プロフィール画像" %></p>
+
+  <p><%= f.label :アーティスト名 %>
+  <%= f.fields_for :artist do |a| %>
+    <%= a.text_field :name %>
+  <% end %></p>
+
+  <p><%= f.label :レーベル名 %>
+  <%= f.text_field :label_id %></p>
+
+  <p><%= f.label :ジャンル名 %>
+  <%= f.text_field :genre_id %></p>
+
+  <p><%= f.label :在庫量 %>
+  <%= f.text_field :stock  %>枚</p>
+
+  <%= f.submit "商品を登録する", class:"btn btn-primary btn-block " %>
 
 <% end %>
