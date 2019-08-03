@@ -5,4 +5,6 @@ class Product < ApplicationRecord
   belongs_to :artist
   belongs_to :label
   belongs_to :genre
+
+  enum product_status:[:販売中, :販売停止中]
 end
