@@ -11,20 +11,20 @@
   <p><%= f.label :ジャケット画像 %>
   <%= f.attachment_field :jacket, placeholder: "プロフィール画像" %></p>
 
-  <p><%= f.label :アーティスト名 %>
-  <%= f.fields_for @artist do |a| %>
-    <%= a.text_field :name %>
-  <% end %></p>
+  <p>
+    <%= f.label :アーティスト名 %>
+    <%= f.select :artist_id, @artist.map{|a| [a.name,a.id]} %>
+  </p>
 
-  <p><%= f.label :レーベル名 %>
-  <%= f.fields_for @label do |l| %>
-    <%= l.text_field :name %>
-  <% end %></p>
+  <p>
+    <%= f.label :レーベル名 %>
+    <%= f.select :label_id, @label.map{|l| [l.name,l.id]} %>
+  </p>
 
-  <p><%= f.label :ジャンル名 %>
-  <%= f.fields_for @genre do |g| %>
-    <%= g.text_field :name %>
-  <% end %></p>
+  <p>
+    <%= f.label :ジャンル名 %>
+    <%= f.select :genre_id, @genre.map{|g| [g.name,g.id]} %>
+  </p>
 
   <p><%= f.label :在庫量 %>
   <%= f.text_field :stock  %>枚</p>
