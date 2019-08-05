@@ -1,2 +1,25 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<h1>商品詳細ページ</h1>
+
+<div class="product-box">
+  <%= attachment_image_tag @product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %>
+
+  商品名：<%= @product.name %>
+
+  アーティスト名<%= @product.artist_id %>
+
+  ジャンル名：<%= @product.genre_id %>
+
+  在庫数：<%= @product.stock %>
+
+  現在<%= @product.product_status %>
+
+  価格：<%= @product.price %>
+</div>
+
+<h2>曲目</h2>
+
+
+<% @discs.each do |disc| %>
+  <%= disc.disc_number %>
+  <%= disc.songs.name %>
+<% end %>

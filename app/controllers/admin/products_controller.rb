@@ -3,6 +3,9 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    @discs = @product.discs
+    binding.pry
   end
 
   def edit
@@ -13,6 +16,8 @@ class Admin::ProductsController < ApplicationController
     @artist = Artist.all
     @label = Label.all
     @genre = Genre.all
+    @disc = @product.discs.build
+    @song = @disc.songs.build
   end
 
   def search
@@ -42,7 +47,9 @@ class Admin::ProductsController < ApplicationController
 
     def product_params
         params.require(:product).permit(
-          :name,:price,:jacket,:stock,:product_status,:artist_id,:label_id,:genre_id
+          :name,:price,:jacket,:stock,:product_status,:artist_id,:label_id,:genre_id,
+            discs_attributes: [:id, :disc_number,:_destroy,
+              songs_attributes: [:id, :name,:artist_id, :_destroy]]
         )
     end
 end

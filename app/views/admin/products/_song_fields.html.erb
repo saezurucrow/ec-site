@@ -1,0 +1,8 @@
+<div class="nested-fields form-inline">
+  <div class="form-group">
+    <%= f.label :曲名 %>
+    <%= f.text_field :name %>
+    <%= f.label :アーティスト名 %>
+    <%= f.select :artist_id, @artist.map{|a| [a.name,a.id]} %>
+  </div>
+</div>

@@ -26,6 +26,19 @@
     <%= f.select :genre_id, @genre.map{|g| [g.name,g.id]} %>
   </p>
 
+  <p>
+    <%= f.label :曲名 %>
+    <div class="Discs">
+      <%= f.fields_for :discs do |disc| %>
+        <%= render 'disc_fields', f: disc %>
+      <% end %>
+
+      <div id="links">
+        <%= link_to_add_association 'ディスクを追加する',f, :discs %>
+      </div>
+    </div>
+  </p>
+
   <p><%= f.label :在庫量 %>
   <%= f.text_field :stock  %>枚</p>
 
