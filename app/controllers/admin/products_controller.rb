@@ -5,10 +5,15 @@ class Admin::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @discs = @product.discs
-    binding.pry
   end
 
   def edit
+    @product = Product.find(params[:id])
+    @artist = Artist.all
+    @label = Label.all
+    @genre = Genre.all
+    @disc = @product.discs.build
+    @song = @disc.songs.build
   end
 
   def new
@@ -38,6 +43,15 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      flash[:notice] = "編集成功"
+      redirect_to admin_product_path(@product)
+    else
+      flash[:notice] = "編集失敗"
+      render :edit
+    end
+
   end
 
   def destroy

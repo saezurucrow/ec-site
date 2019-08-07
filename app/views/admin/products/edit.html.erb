@@ -1,2 +1,50 @@
-<h1>Admin::Products#edit</h1>
-<p>Find me in app/views/admin/products/edit.html.erb</p>
+<h1>商品編集</h1>
+
+<%= form_for(@product,url: admin_product_path) do |f| %>
+
+  <p><%= f.label :商品名 %>
+  <%= f.text_field :name %></p>
+
+  <p><%= f.label :価格 %>
+  <%= f.text_field :price %>円</p>
+
+  <p><%= f.label :ジャケット画像 %>
+  <%= f.attachment_field :jacket, placeholder: "プロフィール画像" %></p>
+
+  <p>
+    <%= f.label :アーティスト名 %>
+    <%= f.select :artist_id, @artist.map{|a| [a.name,a.id]} %>
+  </p>
+
+  <p>
+    <%= f.label :レーベル名 %>
+    <%= f.select :label_id, @label.map{|l| [l.name,l.id]} %>
+  </p>
+
+  <p>
+    <%= f.label :ジャンル名 %>
+    <%= f.select :genre_id, @genre.map{|g| [g.name,g.id]} %>
+  </p>
+
+  <p>
+    <%= f.label :曲名 %>
+    <div class="Discs">
+      <%= f.fields_for :discs do |disc| %>
+        <%= render 'disc_fields', f: disc %>
+      <% end %>
+
+      <div id="links">
+        <%= link_to_add_association 'ディスクを追加する',f, :discs %>
+      </div>
+    </div>
+  </p>
+
+  <p><%= f.label :在庫量 %>
+  <%= f.text_field :stock  %>枚</p>
+
+  <p><%= f.label :販売ステータス %>
+  <%= f.select :product_status, Product.product_statuses.keys, :selected=>Product.product_statuses[@product.product_status] %></p>
+
+  <%= f.submit "商品を修正する", class:"btn btn-primary btn-block " %>
+
+<% end %>
