@@ -1,0 +1,10 @@
+<h1>アーティスト新規登録</h1>
+
+<%= form_for(@artist) do |f| %>
+
+<%= f.label :名前 %>
+<%= f.text_field :name %>
+
+<%= f.submit "登録" %>
+
+<% end %>

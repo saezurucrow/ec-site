@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index,:show,:edit,:destroy,:update]
     resources :orders, only: [:index,:show,:edit,:update]
     resources :products
+    resources :artists , only: [:create,:new]
+    resources :labels , only: [:create,:new]
+    resources :genres , only: [:create,:new]
     get 'products/search'
   end
 
