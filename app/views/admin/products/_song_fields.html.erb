@@ -1,5 +1,7 @@
 <div class="nested-fields form-inline">
   <div class="form-group">
+    <%= f.label :曲順 %>
+    <%= f.number_field :song_number ,min:1,max:1000 %>
     <%= f.label :曲名 %>
     <%= f.text_field :name %>
     <%= f.label :アーティスト名 %>

@@ -56,6 +56,14 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      flash[:notice] = "削除成功"
+      redirect_to admin_products_path
+    else
+      flash[:notice] = "削除失敗"
+      redirect_to :index
+    end
   end
 
   private
@@ -64,7 +72,7 @@ class Admin::ProductsController < ApplicationController
         params.require(:product).permit(
           :name,:price,:jacket,:stock,:product_status,:artist_id,:label_id,:genre_id,
             discs_attributes: [:id, :disc_number,:_destroy,
-              songs_attributes: [:id, :name,:artist_id, :_destroy]]
+              songs_attributes: [:id, :song_number,:name,:artist_id, :_destroy]]
         )
     end
 end
