@@ -1,5 +1,26 @@
-<h1>商品一覧ページ</h1>
+<h1>管理者用商品一覧ページ</h1>
 <%= link_to '新規商品登録', new_admin_product_path %>
 <%= link_to '新規アーティスト登録', new_admin_artist_path %>
 <%= link_to '新規レーベル登録', new_admin_label_path %>
 <%= link_to '新規ジャンル登録', new_admin_genre_path %>
+
+<table>
+  <tr>
+    <th>ジャケット</th>
+    <th>アルバム名</th>
+    <th>価格</th>
+    <th>在庫数</th>
+    <th>販売ステータス</th>
+    <th></th>
+  </tr>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= attachment_image_tag product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></td>
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.stock %></td>
+      <td><%= product.product_status %></td>
+      <td><%= link_to "詳細" , admin_product_path(product) %></td>
+    </tr>
+  <% end %>
+</table>
