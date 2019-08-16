@@ -5,9 +5,11 @@
 
   商品名：<%= @product.name %>
 
-  アーティスト名<%= @product.artist_id %>
+  アーティスト名<%= @product.artist.name %>
 
-  ジャンル名：<%= @product.genre_id %>
+  ジャンル名：<%= @product.genre.name %>
+
+  レーベル名：<%= @product.label.name %>
 
   在庫数：<%= @product.stock %>
 
@@ -23,7 +25,7 @@
   <strong><%= disc.disc_number %>枚目</strong>
   <p>
   <% disc.songs.each do |song| %>
-    <p><%= song.id %>,<%= song.name %></p>
+    <p><%= song.song_number %>,<%= song.name %></p>
   <% end %>
   </p>
 <% end %>

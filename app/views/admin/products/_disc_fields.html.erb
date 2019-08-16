@@ -1,7 +1,7 @@
 <div class="nested-fields well well-compact">
   <div class="form-group">
     <%= f.label :disc_number %>
-    <%= f.number_field :disc_number %><br>
+    <%= f.number_field :disc_number,min:1,max:1000 %><br>
   </div>
 
   <div class="items">
