@@ -25,6 +25,16 @@ body {
       display: flex;
     }
 
+    .name{
+      padding: 15px;
+      line-height: 6.5vh;
+      color: #9d9d9d;
+    }
+
+    .profile-img{
+      border: 2px white solid;
+    }
+
     .title {
       font-size: 35px;
       color: white;

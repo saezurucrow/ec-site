@@ -24,7 +24,7 @@
   <strong><%= disc.disc_number %>枚目</strong>
   <p>
   <% disc.songs.each do |song| %>
-    <p><%= song.name %></p>
+    <p><%= song.song_number %>,<%= song.name %></p>
   <% end %>
   </p>
 <% end %>
