@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admin_users
   namespace :admin do
     resources :users, only: [:index,:show,:edit,:destroy,:update]
     resources :orders, only: [:index,:show,:edit,:update]
