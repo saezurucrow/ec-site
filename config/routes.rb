@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :labels , only: [:create,:new]
     resources :genres , only: [:create,:new]
     get 'products/search'
+
+    get     'login',   to: 'sessions#new'
+    post    'login',   to: 'sessions#create'
+    delete  'logout',  to: 'sessions#destroy'
   end
 
   resources :carts, only: [:show]
