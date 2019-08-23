@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = Customer.all
   end
 
   def show
@@ -14,4 +14,11 @@ class Admin::UsersController < ApplicationController
 
   def update
   end
+
+  private
+
+  def admin_params
+    params.require(:admin).permit(:name, :mail, :password, :password_confirmation)
+  end
+
 end
