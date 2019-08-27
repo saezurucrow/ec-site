@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  def after_sign_in_path_for(resource)
+    products_path
+  end
+
   def current_admin
     remember_token = Admin.encrypt(cookies[:remember_token])
     @admin_current_user ||= Admin.find_by(remember_token: remember_token)
@@ -18,7 +22,7 @@ class ApplicationController < ActionController::Base
     @admin_current_user = admin
   end
 
-  def sign_out
+  def admin_sign_out
     @admin_current_user = nil
     Admin.find(1).remember_token = nil
     Admin.update(remember_token: nil)
