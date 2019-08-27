@@ -1,68 +1,99 @@
 class Admin::ProductsController < ApplicationController
   def index
-    @products = Product.all
+    if signed_in?
+      @products = Product.all
+    else
+      redirect_to admin_login_path
+    end
   end
 
   def show
-    @product = Product.find(params[:id])
-    @discs = @product.discs
+    if signed_in?
+      @product = Product.find(params[:id])
+      @discs = @product.discs
+    else
+      redirect_to admin_login_path
+    end
   end
 
   def edit
-    @product = Product.find(params[:id])
-    @artist = Artist.all
-    @label = Label.all
-    @genre = Genre.all
-    @disc = @product.discs.build
-    @song = @disc.songs.build
+    if signed_in?
+      @product = Product.find(params[:id])
+      @artist = Artist.all
+      @label = Label.all
+      @genre = Genre.all
+      @disc = @product.discs.build
+      @song = @disc.songs.build
+    else
+      redirect_to admin_login_path
+    end
   end
 
   def new
-    @product = Product.new
-    @artist = Artist.all
-    @label = Label.all
-    @genre = Genre.all
-    @disc = @product.discs.build
-    @song = @disc.songs.build
+    if signed_in?
+      @product = Product.new
+      @artist = Artist.all
+      @label = Label.all
+      @genre = Genre.all
+      @disc = @product.discs.build
+      @song = @disc.songs.build
+    else
+      redirect_to admin_login_path
+    end
   end
 
   def search
   end
 
   def create
-    @product = Product.new(product_params)
+    if signed_in?
+      @product = Product.new(product_params)
 
-    if @product.save
-      flash[:notice] = "投稿成功"
-      redirect_to admin_product_path(@product)
+      if @product.save
+        flash[:notice] = "投稿成功"
+        redirect_to admin_product_path(@product)
+      else
+        flash[:notice] = "投稿失敗"
+        p @product.errors.full_messages
+        render :new
+      end
+
     else
-      flash[:notice] = "投稿失敗"
-      p @product.errors.full_messages
-      render :new
+      redirect_to admin_login_path
     end
 
   end
 
   def update
-    @product = Product.find(params[:id])
-    if @product.update(product_params)
-      flash[:notice] = "編集成功"
-      redirect_to admin_product_path(@product)
+    if signed_in?
+      @product = Product.find(params[:id])
+      if @product.update(product_params)
+        flash[:notice] = "編集成功"
+        redirect_to admin_product_path(@product)
+      else
+        flash[:notice] = "編集失敗"
+        render :edit
+      end
+
     else
-      flash[:notice] = "編集失敗"
-      render :edit
+      redirect_to admin_login_path
     end
 
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    if @product.destroy
-      flash[:notice] = "削除成功"
-      redirect_to admin_products_path
+    if signed_in?
+      @product = Product.find(params[:id])
+      if @product.destroy
+        flash[:notice] = "削除成功"
+        redirect_to admin_products_path
+      else
+        flash[:notice] = "削除失敗"
+        redirect_to :index
+      end
+
     else
-      flash[:notice] = "削除失敗"
-      redirect_to :index
+      redirect_to admin_login_path
     end
   end
 

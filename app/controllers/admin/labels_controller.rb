@@ -1,18 +1,26 @@
 class Admin::LabelsController < ApplicationController
   def new
-    @label = Label.new
+    if signed_in?
+      @label = Label.new
+    else
+      redirect_to admin_login_path
+    end
   end
 
   def create
-    @label = Label.new(label_params)
+    if signed_in?
+      @label = Label.new(label_params)
 
-    if @label.save
-      flash[:notice] = "投稿成功"
-      redirect_to admin_products_path
+      if @label.save
+        flash[:notice] = "投稿成功"
+        redirect_to admin_products_path
+      else
+        flash[:notice] = "投稿失敗"
+        p @label.errors.full_messages
+        render :new
+      end
     else
-      flash[:notice] = "投稿失敗"
-      p @label.errors.full_messages
-      render :new
+      redirect_to admin_login_path
     end
   end
 

@@ -15,8 +15,12 @@ class Admin::SessionsController < ApplicationController
   end
 
   def destroy
-    admin_sign_out
-    redirect_to root_path
+    if signed_in?
+      admin_sign_out
+      redirect_to root_path
+    else
+      redirect_to admin_login_path
+    end
   end
 
   private
@@ -26,6 +30,10 @@ class Admin::SessionsController < ApplicationController
     rescue
       flash[:notice] = 'invalid_mail'
       render action: 'new'
+    end
+
+    def require_sign_in!
+      admin_login_path unless signed_in?
     end
 
     # 許可するパラメータ
