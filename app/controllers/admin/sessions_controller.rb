@@ -6,8 +6,8 @@ class Admin::SessionsController < ApplicationController
 
   def create
     if @admin.authenticate(session_params[:password])
-      sign_in(@admin)
-      redirect_to root_path
+      admin_sign_in(@admin)
+      redirect_to admin_products_path
     else
       flash[:notice] = 'invalid_password'
       render 'new'

@@ -1,9 +1,9 @@
 <h1>管理者ログイン</h1>
 
-<%= form_for :session,url login_path do |f| %>
-  <p>email:<%= f.email_field :mail %></p>
-  <p>password:<%= f.password_field :password %></p>
+<%= form_for(:session,url: admin_login_path) do |f| %>
+  <p><strong>email:</strong><%= f.email_field :mail %></p>
+  <p><strong>password:</strong><%= f.password_field :password %></p>
 
-  <p>\<%= f.submit 'ログイン' %></p>
+  <p><%= f.submit 'ログイン' %></p>
 <% end %>
 

@@ -1,12 +1,31 @@
 class ApplicationController < ActionController::Base
   before_action :product_search
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :current_admin
+  helper_method :signed_in?
 
-  def sign_in(user)
-    remember_token = User.new_remember_token
-    cookies.permanent[:user_remember_token] = remember_token
-    user.update!(remember_token: User.encrypt(remember_token))
-    @current_user = user
+  protect_from_forgery with: :exception
+
+  def current_admin
+    remember_token = Admin.encrypt(cookies[:remember_token])
+    @admin_current_user ||= Admin.find_by(remember_token: remember_token)
+  end
+
+  def admin_sign_in(admin)
+    remember_token = Admin.new_remember_token
+    cookies.permanent[:remember_token] = remember_token
+    admin.update!(remember_token: Admin.encrypt(remember_token))
+    @admin_current_user = admin
+  end
+
+  def sign_out
+    @admin_current_user = nil
+    Admin.find(1).remember_token = nil
+    Admin.update(remember_token: nil)
+  end
+
+  def signed_in?
+    Admin.find(1).remember_token.present?
   end
 
   protected
@@ -21,5 +40,6 @@ class ApplicationController < ActionController::Base
       @q = Product.ransack(params[:q])
       @products = @q.result(distinct: true).page(params[:page]).per(8)
     end
+
 
 end

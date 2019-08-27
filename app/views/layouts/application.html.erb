@@ -44,6 +44,19 @@
           <li class="">
             <%= attachment_image_tag current_customer, :image, :fill, 50, 50,class: "profile-img", fallback: "no_image.jpg" %>
           </li>
+        <% elsif signed_in? %>
+          <li class="title">
+            管理者画面
+          </li>
+          <li class="">
+            <%= link_to "商品一覧", admin_products_path ,class: "glyphicon glyphicon-headphones" %>
+          </li>
+          <li class="">
+            <%= link_to "ユーザ一覧", admin_users_path,class: "glyphicon glyphicon-user"  %>
+          </li>
+          <li class="">
+            <%= link_to "ログアウト", admin_logout_path,class: "glyphicon glyphicon-log-in" ,method: :delete %>
+          </li>
         <% else %>
           <li class="">
             <%= link_to "商品一覧", root_path ,class: "glyphicon glyphicon-headphones" %>
