@@ -39,7 +39,7 @@
           <% end %>
           </li>
           <li class="">
-            <%= link_to ' ログアウト', destroy_customer_session_path, method: :delete,class: "glyphicon glyphicon-log-out"  %>
+            <%= link_to ' ログアウト', destroy_customer_session_path, method: :delete,class: "glyphicon glyphicon-log-out",data: {confirm: "ログアウトしますか？"}  %>
           </li>
           <li class="">
             <%= attachment_image_tag current_customer, :image, :fill, 50, 50,class: "profile-img", fallback: "no_image.jpg" %>
@@ -55,7 +55,7 @@
             <%= link_to "ユーザ一覧", admin_users_path,class: "glyphicon glyphicon-user"  %>
           </li>
           <li class="">
-            <%= link_to "ログアウト", admin_logout_path,class: "glyphicon glyphicon-log-in" ,method: :delete %>
+            <%= link_to "ログアウト", admin_logout_path,class: "glyphicon glyphicon-log-in" ,method: :delete,data: {confirm: "ログアウトしますか？"} %>
           </li>
         <% else %>
           <li class="">

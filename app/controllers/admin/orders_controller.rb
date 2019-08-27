@@ -1,29 +1,13 @@
 class Admin::OrdersController < ApplicationController
+  before_action :require_sign_in!
   def index
-    if signed_in?
-    else
-      redirect_to admin_login_path
-    end
   end
 
   def show
-    if signed_in?
-    else
-      redirect_to admin_login_path
-    end
   end
 
   def edit
-    if signed_in?
-    else
-      redirect_to admin_login_path
-    end
   end
 
   def update
-    if signed_in?
-    else
-      redirect_to admin_login_path
-    end
-  end
 end

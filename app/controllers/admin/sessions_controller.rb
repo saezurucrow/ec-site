@@ -1,5 +1,6 @@
 class Admin::SessionsController < ApplicationController
   before_action :set_admin, only: [:create]
+  before_action :require_sign_in!, only: [:create]
 
   def new
   end

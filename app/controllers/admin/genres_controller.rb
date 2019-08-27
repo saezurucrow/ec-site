@@ -1,14 +1,10 @@
 class Admin::GenresController < ApplicationController
+  before_action :require_sign_in!
   def new
-    if signed_in?
       @genre = Genre.new
-    else
-      redirect_to admin_login_path
-    end
   end
 
   def create
-    if signed_in?
       @genre = Genre.new(genre_params)
 
       if @genre.save
@@ -19,9 +15,6 @@ class Admin::GenresController < ApplicationController
         p @genre.errors.full_messages
         render :new
       end
-    else
-      redirect_to admin_login_path
-    end
   end
 
   private

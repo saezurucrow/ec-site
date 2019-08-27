@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
     Admin.find(1).remember_token.present?
   end
 
-  protected
+  private
+
+    def require_sign_in!
+      redirect_to admin_login_path unless signed_in?
+    end
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name,:last_name_kana,:first_name,:first_name_kana,:image,:postal_code,:address,:tel])
@@ -44,6 +48,5 @@ class ApplicationController < ActionController::Base
       @q = Product.ransack(params[:q])
       @products = @q.result(distinct: true).page(params[:page]).per(8)
     end
-
 
 end

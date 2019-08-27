@@ -1,15 +1,10 @@
 class Admin::ArtistsController < ApplicationController
-  
+  before_action :require_sign_in!
   def new
-    if signed_in?
       @artist = Artist.new
-    else
-      redirect_to admin_login_path
-    end
   end
 
   def create
-    if signed_in?
       @artist = Artist.new(artist_params)
 
       if @artist.save
@@ -20,9 +15,6 @@ class Admin::ArtistsController < ApplicationController
         p @artist.errors.full_messages
         render :new
       end
-    else
-      redirect_to admin_login_path
-    end
   end
 
   private

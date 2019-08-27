@@ -1,14 +1,10 @@
 class Admin::LabelsController < ApplicationController
+  before_action :require_sign_in!
   def new
-    if signed_in?
       @label = Label.new
-    else
-      redirect_to admin_login_path
-    end
   end
 
   def create
-    if signed_in?
       @label = Label.new(label_params)
 
       if @label.save
@@ -19,9 +15,6 @@ class Admin::LabelsController < ApplicationController
         p @label.errors.full_messages
         render :new
       end
-    else
-      redirect_to admin_login_path
-    end
   end
 
   private
