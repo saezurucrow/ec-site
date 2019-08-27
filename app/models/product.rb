@@ -10,4 +10,12 @@ class Product < ApplicationRecord
   belongs_to :genre
 
   enum product_status:[:販売中, :販売停止中]
+
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :artist_id, presence: true
+  validates :label_id, presence: true
+  validates :genre_id, presence: true
+  validates :stock presence: true
+  validates :product_status, presence: true
 end
