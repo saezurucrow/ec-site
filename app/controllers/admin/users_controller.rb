@@ -1,7 +1,8 @@
 class Admin::UsersController < ApplicationController
   before_action :require_sign_in!
+
   def index
-      @users = Customer.all
+    @users = Customer.all
   end
 
   def show
@@ -21,5 +22,4 @@ class Admin::UsersController < ApplicationController
   def admin_params
     params.require(:admin).permit(:name, :mail, :password, :password_confirmation)
   end
-
 end

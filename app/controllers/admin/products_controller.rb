@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
   before_action :require_sign_in!
   def index
-      @products = Product.all
+    @products = Product.all
   end
 
   def show
