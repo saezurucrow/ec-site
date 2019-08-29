@@ -1,6 +1,22 @@
-<h1>ユーザー一覧</h1>
+<h1>ユーザ一覧</h1>
 
-
-<% @users.each do |user| %>
-  <%= user.name %>
-<% end %>
+<table class="table">
+  <tr>
+    <th>アイコン</th>
+    <th>お名前</th>
+    <th>メールアドレス</th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to admin_user_path(user) do %>
+         <%= attachment_image_tag user, :image, :fill, 50, 50,fallback: "no_image.jpg" %>
+        <% end %>
+      </td>
+      <td><%= user.last_name %><%= user.first_name %> さん</td>
+      <td><%= user.email %></td>
+      <td> <%= link_to '削除する', admin_user_path(user), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

@@ -6,5 +6,6 @@
     <%= f.text_field :name %>
     <%= f.label :アーティスト名 %>
     <%= f.select :artist_id, @artist.map{|a| [a.name,a.id]} %>
+    <%= link_to_remove_association "曲を削除する", f %>
   </div>
 </div>
