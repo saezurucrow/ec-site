@@ -1,5 +1,14 @@
 <h1><%= @user.last_name %><%= @user.first_name %>さんの詳細ページ</h1>
 
+<h2>情報</h2>
+
+<p>画像:<%= attachment_image_tag @user, :image, :fill, 50, 50,fallback: "no_image.jpg" %></p>
+<p>email:<%= @user.email %></p>
+<p>郵便番号:<%= @user.postal_code %></p>
+<p>住所:<%= @user.address %></p>
+<p>電話番号:<%= @user.tel %></p>
+
+
 <h2>購入商品一覧</h2>
 
 <%= link_to 'ユーザー編集する', edit_admin_user_path(@user) %>

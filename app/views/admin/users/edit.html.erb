@@ -1,2 +1,49 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h1>ユーザ編集</h1>
+
+<%= form_for(@user,url: admin_user_path)do |f| %>
+
+  <div class="field">
+    <%= f.label :名前 %><br />
+    <%= f.label :性 %>
+    <%= f.text_field :last_name,autocomplete: "name" %>
+    <%= f.label :名 %>
+    <%= f.text_field :first_name,autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :名前カナ %><br />
+    <%= f.label :セイ %>
+    <%= f.text_field :last_name_kana,autocomplete: "name" %>
+    <%= f.label :メイ %>
+    <%= f.text_field :first_name_kana,autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ユーザー画像 %><br />
+    <%= f.attachment_field :image, placeholder: "プロフィール画像"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所 %><br />
+    <%= f.text_field :address%>
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号 %><br />
+    <%= f.text_field :tel%>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "編集する" %>
+  </div>
+<% end %>
