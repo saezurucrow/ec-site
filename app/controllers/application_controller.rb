@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  helper_method :current_cart
   before_action :product_search
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_admin
@@ -30,6 +33,15 @@ class ApplicationController < ActionController::Base
 
   def signed_in?
     Admin.find(1).remember_token.present?
+  end
+
+  def current_cart
+    if session[:cart_id]
+      @cart = Cart.find(session[:cart_id])
+    else
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
+    end
   end
 
   private
