@@ -39,8 +39,11 @@ class ApplicationController < ActionController::Base
     if session[:cart_id]
       @cart = Cart.find(session[:cart_id])
     else
-      @cart = Cart.create
+      @cart = Cart.new
+      @cart.customer_id = current_customer.id
+      @cart.save
       session[:cart_id] = @cart.id
+      @cart
     end
   end
 

@@ -32,5 +32,8 @@
 
 
 <%= link_to '戻る', products_path %>
-<%= link_to 'カートに入れる', "#" %>
 
+<%= form_for(@cart_item, url: add_item_path(@product) ) do |f| %>
+    <p>数量：<%= f.number_field :quantity %></p>
+    <p><%= f.submit "カートに追加", class: "btn btn-danger glyphicon glyphicon-shopping-cart" %></p>
+<% end %>

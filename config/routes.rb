@@ -13,10 +13,6 @@ Rails.application.routes.draw do
     delete  'logout',  to: 'sessions#destroy'
   end
 
-  resources :carts, only: [:show]
-  get 'carts/buy'
-  get 'carts/result'
-
   resources :orders, only: [:show]
 
   devise_for :customers

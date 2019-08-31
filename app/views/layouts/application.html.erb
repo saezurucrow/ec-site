@@ -31,7 +31,7 @@
             <%= link_to ' 商品一覧', products_path ,class: "glyphicon glyphicon-home" %>
           </li>
           <li class="">
-            <%= link_to ' カート', "#" ,class: "glyphicon glyphicon-shopping-cart"  %>
+            <%= link_to ' カート', cart_path(current_customer) ,class: "glyphicon glyphicon-shopping-cart"  %>
           </li>
           <li class="">
           <%= link_to customer_path(current_customer), class: "glyphicon glyphicon-user" do %>
