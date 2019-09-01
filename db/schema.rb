@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_08_31_050923) do
     t.integer "product_id"
     t.integer "cart_id"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "updated_at", null: farailslse
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end

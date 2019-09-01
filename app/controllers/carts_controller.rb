@@ -7,7 +7,8 @@ class CartsController < ApplicationController
  # 商品一覧画面から、「商品購入」を押した時のアクション
   def add_item
     if @cart_item.blank?
-      @cart_item = current_cart.cart_items.build(product_id: params[:id])
+      @cart_item = current_cart.cart_items.build(product_id: params[:cart_item][:product_id])
+      binding.pry
     end
     @cart_item.quantity += params[:cart_item][:quantity].to_i
     @cart_item.save

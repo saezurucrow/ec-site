@@ -33,7 +33,8 @@
 
 <%= link_to '戻る', products_path %>
 
-<%= form_for(@cart_item, url: add_item_path(@product) ) do |f| %>
+<%= form_for(@cart_item, url: add_item_path ) do |f| %>
     <p>数量：<%= f.number_field :quantity %></p>
+    <%= f.hidden_field :product_id, :value => @product.id %>
     <p><%= f.submit "カートに追加", class: "btn btn-danger glyphicon glyphicon-shopping-cart" %></p>
 <% end %>

@@ -1,3 +1,7 @@
 <h1>カート詳細ページ</h1>
 
-<%= @cart_items %>
+<% @cart_items.each do |cart_item| %>
+  <p>ジャケット:<%= attachment_image_tag cart_item.product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></p>
+  <p>アルバム名:<%= cart_item.product.name %></p>
+  <p>価格:<%= cart_item.product.price %>円<p>
+<% end %>
