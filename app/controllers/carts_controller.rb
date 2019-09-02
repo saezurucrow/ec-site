@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :setup_cart_item! ,only:[:add_item,:update_item,:delete_item]
+
   def show
     @cart_items = current_cart.cart_items
   end
@@ -8,12 +10,15 @@ class CartsController < ApplicationController
   def add_item
     if @cart_item.blank?
       @cart_item = current_cart.cart_items.build(product_id: params[:cart_item][:product_id])
-      binding.pry
     end
-    @cart_item.quantity += params[:cart_item][:quantity].to_i
-    @cart_item.save
-    redirect_to current_cart
-    binding.pry
+    # 在庫数が注文数より少ないか
+    if Product.find(params[:cart_item][:product_id]).stock > params[:cart_item][:quantity].to_i
+      @cart_item.quantity += params[:cart_item][:quantity].to_i
+      @cart_item.save
+      redirect_to current_cart
+    else
+      redirect_to product_path(params[:cart_item][:product_id])
+    end
   end
 
   # カート詳細画面から、「更新」を押した時のアクション
@@ -31,6 +36,10 @@ class CartsController < ApplicationController
   private
 
   def setup_cart_item!
-    @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+    if params[:product_id]
+      @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+    else
+      @cart_item = current_cart.cart_items.find_by(product_id: params[:cart_item][:product_id])
+    end
   end
 end
