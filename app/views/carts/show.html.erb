@@ -1,6 +1,6 @@
 <h1>カート詳細ページ</h1>
 
-<% if @cart_items  %>
+<% if @cart_items.nil?  %>
   <p>カート内に商品はありません。</p>
 <% end %>
 
@@ -11,3 +11,5 @@
   <p>注文数:<%= cart_item.quantity %>枚<p>
   <%= link_to 'カート削除', delete_item_path(product_id: cart_item.product.id) , method: :delete %>
 <% end %>
+
+<p><%= link_to '注文する' ,"#" %></p>
