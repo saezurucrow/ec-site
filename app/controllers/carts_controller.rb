@@ -15,8 +15,10 @@ class CartsController < ApplicationController
     if Product.find(params[:cart_item][:product_id]).stock > params[:cart_item][:quantity].to_i
       @cart_item.quantity += params[:cart_item][:quantity].to_i
       @cart_item.save
+      flash[:notice] = "カートに追加しました。"
       redirect_to current_cart
     else
+      flash[:notice] = "在庫がありません。"
       redirect_to product_path(params[:cart_item][:product_id])
     end
   end
@@ -37,7 +39,7 @@ class CartsController < ApplicationController
 
   def setup_cart_item!
     if params[:product_id]
-      @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+      @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id].to_i)
     else
       @cart_item = current_cart.cart_items.find_by(product_id: params[:cart_item][:product_id])
     end
