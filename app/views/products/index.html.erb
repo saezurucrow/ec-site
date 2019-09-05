@@ -6,8 +6,8 @@
     <p><%= attachment_image_tag product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></p>
     <% end %>
     <p><%= product.name %></p>
-    <p>価格：<%= product.price %></p>
-    <p>在庫数：<%= product.stock %></p>
+    <p>価格：<%= product.price %>円</p>
+    <p>在庫数：<%= product.stock %>枚</p>
   </div>
 <% end %>
 

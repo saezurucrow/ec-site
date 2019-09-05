@@ -4,6 +4,7 @@ class CartsController < ApplicationController
 
   def show
     @cart_items = current_cart.cart_items
+    @sum_price = 0
   end
 
  # 商品一覧画面から、「商品購入」を押した時のアクション

@@ -10,6 +10,10 @@
   <p>価格:<%= cart_item.product.price %>円<p>
   <p>注文数:<%= cart_item.quantity %>枚<p>
   <%= link_to 'カート削除', delete_item_path(product_id: cart_item.product.id) , method: :delete %>
+
+  <% @sum_price += cart_item.product.price * cart_item.quantity %>
 <% end %>
+
+<p>合計金額<%= @sum_price %>円</p>
 
 <p><%= link_to '注文する' ,"#" %></p>
