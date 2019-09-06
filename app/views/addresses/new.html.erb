@@ -1,2 +1,18 @@
-<h1>Addresses#new</h1>
-<p>Find me in app/views/addresses/new.html.erb</p>
+<h1>住所登録</h1>
+
+<%= form_for(@address) do |f| %>
+
+  <p><%= f.label :タグ %>
+  <%= f.text_field :name ,placeholder: "e.g.) 自宅、勤務先" %></p>
+
+  <p><%= f.label :郵便番号 %>
+  <%= f.text_field :postal_code %></p>
+
+  <p><%= f.label :住所 %>
+  <%= f.text_field :address_name%></p>
+
+  <p><%= f.label :電話番号 %>
+  <%= f.text_field :tel %></p>
+
+  <p><%= f.submit "登録する" %></p>
+<% end %>

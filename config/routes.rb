@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'addresses/new'
-  get 'addresses/create'
-  get 'addresses/edit'
-  get 'addresses/update'
-  get 'addresses/destory'
   namespace :admin do
     resources :users, only: [:index,:show,:edit,:destroy,:update]
     resources :orders, only: [:index,:show,:edit,:update]
@@ -33,6 +28,8 @@ Rails.application.routes.draw do
   post '/add_item' => 'carts#add_item'
   post '/update_item' => 'carts#update_item'
   delete '/delete_item' => 'carts#delete_item'
+
+  resources :addresses, only: [:edit,:update,:destory,:create,:new]
 
   root 'products#index'
 end

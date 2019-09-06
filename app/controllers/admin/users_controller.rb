@@ -33,6 +33,6 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:customer).permit(:last_name,:last_name_kana,:first_name,:first_name_kana,
-                          :image,:postal_code,:address,:tel,:email)
+                          :image,:email)
   end
 end
