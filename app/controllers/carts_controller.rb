@@ -13,7 +13,7 @@ class CartsController < ApplicationController
       @cart_item = current_cart.cart_items.build(product_id: params[:cart_item][:product_id])
     end
     # 在庫数が注文数より少ないか
-    if Product.find(params[:cart_item][:product_id]).stock > params[:cart_item][:quantity].to_i
+    if Product.find(params[:cart_item][:product_id]).stock >= params[:cart_item][:quantity].to_i
       @cart_item.quantity += params[:cart_item][:quantity].to_i
       @cart_item.save
       flash[:notice] = "カートに追加しました。"

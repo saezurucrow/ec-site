@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :carts
   has_many :orders
-  has_many :address
+  has_many :addresses
 
   attachment :image
 end

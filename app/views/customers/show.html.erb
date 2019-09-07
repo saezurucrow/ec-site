@@ -2,4 +2,22 @@
 
 <h2>購入履歴</h2>
 
+<h2>登録住所</h2>
+<table class="table">
+  <tr>
+    <th>タグ</th>
+    <th>住所</th>
+    <th>電話番号</th>
+  </tr>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.name %></td>
+      <td><%= address.address_name %></td>
+      <td><%= address.tel %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to '追加する', new_address_path %></p>
+
 <%= link_to 'ユーザー編集する', edit_customer_registration_path %>

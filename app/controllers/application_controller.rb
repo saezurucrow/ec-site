@@ -10,7 +10,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    products_path
+    if Address.find_by(customer_id: current_customer.id)
+      products_path
+    else
+      flash[:notice] = "住所を登録してください。"
+      new_address_path
+    end
   end
 
   def current_admin
