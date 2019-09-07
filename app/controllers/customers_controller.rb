@@ -3,6 +3,7 @@ class CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @addresses = Address.where(customer_id: params[:id])
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def edit

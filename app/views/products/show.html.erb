@@ -34,7 +34,7 @@
 <%= link_to '戻る', products_path %>
 
 <% if customer_signed_in? %>
-  <% if @product.stock = 0 %>
+  <% if @product.stock == 0 %>
     この商品は売り切れです。
   <% else %>
     <%= form_for(@cart_item, url: add_item_path ) do |f| %>

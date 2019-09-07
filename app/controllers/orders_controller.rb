@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
   #購入方法選択
+  def show
+    @order = Order.find(params[:id])
+  end
   def select
     @cart_items = current_cart.cart_items
     @sum_price = 0
@@ -15,8 +18,10 @@ class OrdersController < ApplicationController
     @order.order_status = 0
     if @order.save
       order_item(@order,current_cart.cart_items)
-      flash[:notice] = "お買い上げありがとうございました。"
-      redirect_to products_path
+      redirect_to order_complete_path
+    else
+      flash[:notice] = "注文ができませんでした。"
+      redirect_to cart_path(current_customer)
     end
   end
 

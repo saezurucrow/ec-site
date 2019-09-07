@@ -1,6 +1,33 @@
 <h1><%= @customer.last_name %><%= @customer.first_name %>さんのマイページ</h1>
 
+<h2>ユーザー情報</h2>
+<table class="table">
+  <tr>
+    <th>email</th>
+  </tr>
+  <tr>
+    <td><%= @customer.email %></td>
+  </tr>
+</table>
+
+
+<%= link_to 'ユーザー編集する', edit_customer_registration_path %>
+
 <h2>購入履歴</h2>
+<table class="table">
+  <tr>
+    <th>注文時刻</th>
+    <th>住所</th>
+    <th></th>
+  </tr>
+  <% @orders.last(3).each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+      <td><%= order.address.address_name %></td>
+      <td><%= link_to "詳細" , order_path(order) %></td>
+    </tr>
+  <% end %>
+</table>
 
 <h2>登録住所</h2>
 <table class="table">
@@ -19,5 +46,3 @@
 </table>
 
 <p><%= link_to '追加する', new_address_path %></p>
-
-<%= link_to 'ユーザー編集する', edit_customer_registration_path %>
