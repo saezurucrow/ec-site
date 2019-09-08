@@ -7,6 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = Customer.find(params[:id])
+    @orders = @user.orders.reverse_order
   end
 
   def edit

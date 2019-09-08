@@ -1,2 +1,12 @@
-<h1>Admin::Orders#edit</h1>
-<p>Find me in app/views/admin/orders/edit.html.erb</p>
+<h1>注文履歴編集</h1>
+
+<%= form_for(@order,url: admin_order_path) do |f| %>
+  <p><%= f.label :配送ステータス %>
+  <%= f.select :payment, Order.payments.keys, :selected=>Order.payments[@order.payment] %></p>
+  <p><%= f.label :配送先 %>
+  <%= f.select :address_id, @user.addresses.collect { |p| [ p.name, p.id ] }, :prompt => "住所を選択" %></p>
+  <p><%= f.label :支払い方法 %>
+  <%= f.select :order_status, Order.order_statuses.keys, :selected=>Order.order_statuses[@order.order_status] %></p>
+
+  <%= f.submit "編集する" %>
+<% end %>

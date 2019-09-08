@@ -1,2 +1,50 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<h1>注文履歴詳細</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th>購入日</th>
+        <th>配送ステータス</th>
+        <th>配送先</th>
+        <th>支払い方法</th>
+        <th>料金</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @order.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+        <td><%= @order.order_status%></td>
+        <td><%= @order.address.address_name %></td>
+        <td><%= @order.payment %></td>
+        <td><%= @order.price_sum %>円</td>
+      </tr>
+    </tbody>
+</table>
+
+<h2>注文商品詳細</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>アルバム名</th>
+            <th>アーティスト</th>
+            <th>価格</th>
+            <th>注文数</th>
+            <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @order.order_shows.each do |order_item| %>
+            <tr>
+            <td><%= attachment_image_tag order_item.product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></td>
+            <td><%= order_item.product.name %></td>
+            <td><%= order_item.product.artist.name %></td>
+            <td><%= order_item.product.price %></td>
+            <td><%= order_item.quantity %></td>
+            <td><%= order_item.product.price * order_item.quantity %>円</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to '編集する', edit_admin_order_path(@order) %>

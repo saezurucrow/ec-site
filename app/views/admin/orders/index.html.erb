@@ -1,2 +1,24 @@
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<h1>受注一覧</h1>
+
+<table class="table">
+      <tr>
+        <th>購入者様</th>
+        <th>購入日</th>
+        <th>配送ステータス</th>
+        <th>配送先</th>
+        <th>支払い方法</th>
+        <th>料金</th>
+        <th></th>
+      </tr>
+<% @orders.each do |order| %>
+      <tr>
+        <td><%= order.customer.last_name %><%= order.customer.first_name %>様</td>
+        <td><%= order.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+        <td><%= order.order_status%></td>
+        <td><%= order.address.address_name %></td>
+        <td><%= order.payment %></td>
+        <td><%= order.price_sum %>円</td>
+        <td><%= link_to '詳細', admin_order_path(order) %></td>
+      </tr>
+<% end %>
+</table>
