@@ -1,0 +1,45 @@
+<h2>以下の内容で注文を確定します</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>アルバム名</th>
+            <th>アーティスト</th>
+            <th>価格</th>
+            <th>注文数</th>
+            <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @cart_items.each do |cart_item| %>
+            <tr>
+            <td><%= attachment_image_tag cart_item.product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></td>
+            <td><%= cart_item.product.name %></td>
+            <td><%= cart_item.product.artist.name %></td>
+            <td><%= cart_item.product.price %></td>
+            <td><%= cart_item.quantity %></td>
+            <td><%= cart_item.quantity * cart_item.product.price %>円</td>
+            <% @sum_price += cart_item.product.price * cart_item.quantity %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% @sum_price += 500 %>
+
+合計金額:<%= @sum_price %>円(送料含む)
+
+<%= form_for(@order,url:orders_confirm_path)  do |f| %>
+
+<h2>支払い方法</h2>
+<%= f.select :payment, Order.payments.keys, :selected=>Order.payments[@order.payment] %>
+
+<h2>送り先</h2>
+<%= f.select :address_id, @customer.addresses.collect { |p| [ p.name, p.id ] }, :prompt => "住所を選択" %>
+
+<%= f.hidden_field :price_sum, :value => @sum_price %>
+
+<p><%= f.submit "注文を確定する" %></p>
+
+<% end %>

@@ -4,8 +4,9 @@ class Product < ApplicationRecord
 
   has_many :cart_items
   has_many :discs
-  has_many :order_shows
   has_many :orders, through: :order_shows
+  has_many :order_shows
+
   accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true
 
   belongs_to :artist

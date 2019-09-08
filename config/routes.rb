@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     delete  'logout',  to: 'sessions#destroy'
   end
 
-  resources :orders, only: [:show]
+  get 'orders/show',   to: 'orders#show'
   get 'orders/select'
   post 'orders/confirm'
   get 'orders/complete'

@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_customer!
   #購入方法選択
   def show
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:order_id])
   end
   def select
     @cart_items = current_cart.cart_items
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     @order.order_status = 0
     if @order.save
       order_item(@order,current_cart.cart_items)
-      redirect_to order_complete_path
+      redirect_to orders_complete_path
     else
       flash[:notice] = "注文ができませんでした。"
       redirect_to cart_path(current_customer)
@@ -37,7 +37,8 @@ class OrdersController < ApplicationController
 
   def order_item(order, cart_items)
     cart_items.each do |cart_item|
-      OrderShow.create(order_id: order.id, product_id: cart_item.id, quantity: cart_item.quantity)
+      OrderShow.create(order_id: order.id, product_id: cart_item.product.id, quantity: cart_item.quantity)
+      binding.pry
       product = cart_item.product
       product.stock -= cart_item.quantity
       product.save
