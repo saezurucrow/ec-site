@@ -17,7 +17,7 @@
     <tr>
       <td><%= attachment_image_tag product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></td>
       <td><%= product.name %></td>
-      <td><%= product.price %></td>
+      <td><%= (product.price * @TAX).floor %></td>
       <td><%= product.stock %></td>
       <td><%= product.product_status %></td>
       <td><%= link_to "詳細" , admin_product_path(product) %></td>

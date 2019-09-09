@@ -38,7 +38,6 @@ class OrdersController < ApplicationController
   def order_item(order, cart_items)
     cart_items.each do |cart_item|
       OrderShow.create(order_id: order.id, product_id: cart_item.product.id, quantity: cart_item.quantity)
-      binding.pry
       product = cart_item.product
       product.stock -= cart_item.quantity
       product.save

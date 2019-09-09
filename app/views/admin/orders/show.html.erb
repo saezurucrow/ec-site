@@ -41,7 +41,7 @@
             <td><%= order_item.product.artist.name %></td>
             <td><%= order_item.product.price %></td>
             <td><%= order_item.quantity %></td>
-            <td><%= order_item.product.price * order_item.quantity %>円</td>
+            <td><%= (order_item.product.price * order_item.quantity * @TAX).floor %>円</td>
             </tr>
         <% end %>
     </tbody>

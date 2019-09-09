@@ -39,9 +39,9 @@
             <td><%= attachment_image_tag order_item.product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></td>
             <td><%= order_item.product.name %></td>
             <td><%= order_item.product.artist.name %></td>
-            <td><%= order_item.product.price %></td>
+            <td><%= (order_item.product.price  * @TAX).floor %></td>
             <td><%= order_item.quantity %></td>
-            <td><%= order_item.product.price * order_item.quantity %>円</td>
+            <td><%= (order_item.product.price * order_item.quantity  * @TAX).floor %>円</td>
             </tr>
         <% end %>
     </tbody>

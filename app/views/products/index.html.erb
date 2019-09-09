@@ -6,7 +6,7 @@
     <p><%= attachment_image_tag product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></p>
     <% end %>
     <p><%= product.name %></p>
-    <p>価格：<%= product.price %>円</p>
+    <p>価格：<%= (product.price * @TAX).floor %>円</p>
     <% if product.stock == 0 %>
       この商品は売り切れです。
     <% else %>

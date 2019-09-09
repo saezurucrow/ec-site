@@ -15,7 +15,7 @@
 
   現在<%= @product.product_status %>
 
-  価格：<%= @product.price %>
+  価格：<%= (@product.price * @TAX).floor %>円
 </div>
 
 <h2>曲目</h2>

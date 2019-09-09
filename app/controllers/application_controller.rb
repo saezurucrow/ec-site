@@ -5,9 +5,14 @@ class ApplicationController < ActionController::Base
   before_action :product_search
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_admin
+  before_action :tax
   helper_method :signed_in?
 
   protect_from_forgery with: :exception
+
+  def tax
+    @TAX = 1.08
+  end
 
   def after_sign_in_path_for(resource)
     if Address.find_by(customer_id: current_customer.id)
