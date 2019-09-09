@@ -16,7 +16,11 @@
    <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
     <nav class='nav navbar-nav navbar-left' >
-      <span class="title">CDショップ</span>
+      <% if signed_in? %>
+        <span class="title">管理者画面</span>
+      <% else %>
+        <span class="title">CDショップ</span>
+      <% end %>
       <%= search_form_for @q ,html: { class: "search-form"} do |f| %>
         <%= f.search_field :name_cont,:placeholder => "Find Product Name" %>
         <%= f.submit "検索" %>
@@ -27,7 +31,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if customer_signed_in? %><!-- 管理者と顧客でpathわけたい -->
           <li class="">
-            <%= link_to ' 商品一覧', products_path ,class: "glyphicon glyphicon-home" %>
+            <%= link_to ' 商品一覧', products_path ,class: "glyphicon glyphicon-headphones" %>
           </li>
           <li class="">
             <%= link_to ' カート', cart_path(current_customer) ,class: "glyphicon glyphicon-shopping-cart"  %>
@@ -44,14 +48,14 @@
             <%= attachment_image_tag current_customer, :image, :fill, 50, 50,class: "profile-img", fallback: "no_image.jpg" %>
           </li>
         <% elsif signed_in? %>
-          <li class="title">
-            管理者画面
-          </li>
           <li class="">
             <%= link_to "商品一覧", admin_products_path ,class: "glyphicon glyphicon-headphones" %>
           </li>
           <li class="">
             <%= link_to "ユーザ一覧", admin_users_path,class: "glyphicon glyphicon-user"  %>
+          </li>
+          <li class="">
+            <%= link_to "受注一覧", admin_orders_path ,class: "glyphicon glyphicon-list-alt" %>
           </li>
           <li class="">
             <%= link_to "ログアウト", admin_logout_path,class: "glyphicon glyphicon-log-in" ,method: :delete,data: {confirm: "ログアウトしますか？"} %>
