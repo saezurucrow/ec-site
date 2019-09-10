@@ -11,4 +11,5 @@ Admin.create!(
     name: "admin",
     mail: "test@test.com",
     password: "asdfasdf",
-  })
+  }
+)
