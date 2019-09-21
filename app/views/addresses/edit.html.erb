@@ -1,2 +1,28 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+<h1>ユーザ編集</h1>
+
+<%= form_for(@address)do |f| %>
+
+  <div class="field">
+    <%= f.label :タグ %><br />
+    <%= f.text_field :name,autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :postal_code,autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所 %><br />
+    <%= f.text_area :address_name,autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号 %><br />
+    <%= f.text_field :tel, placeholder: "プロフィール画像"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "編集する" %>
+  </div>
+<% end %>
