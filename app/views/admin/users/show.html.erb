@@ -4,9 +4,24 @@
 
 <p>画像:<%= attachment_image_tag @user, :image, :fill, 50, 50,fallback: "no_image.jpg" %></p>
 <p>email:<%= @user.email %></p>
-<p>郵便番号:<%= @user.addresses.find(1).postal_code %></p>
-<p>住所:<%= @user.addresses.find(1).address_name %></p>
-<p>電話番号:<%= @user.addresses.find(1).tel %></p>
+
+<h2>登録住所</h2>
+<table class="table">
+  <tr>
+    <th>タグ</th>
+    <th>住所</th>
+    <th>電話番号</th>
+    <th></th>
+  </tr>
+  <% @user.addresses.each do |address| %>
+    <tr>
+      <td><%= address.name %></td>
+      <td><%= address.address_name %></td>
+      <td><%= address.tel %></td>
+      <td><%= link_to '編集する' , edit_address_path(address) %></td>
+    </tr>
+  <% end %>
+</table>
 
 
 <h2>注文履歴一覧</h2>
