@@ -24,7 +24,7 @@
 <% @discs.each do |disc| %>
   <strong><%= disc.disc_number %>枚目</strong>
   <p>
-  <% disc.songs.each do |song| %>
+  <% disc.songs.order(song_number: :asc).each do |song| %>
     <p><%= song.song_number %>,<%= song.name %></p>
   <% end %>
   </p>
