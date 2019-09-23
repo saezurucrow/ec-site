@@ -45,6 +45,7 @@
   <p><%= f.label :販売ステータス %>
   <%= f.select :product_status, Product.product_statuses.keys, :selected=>Product.product_statuses[@product.product_status] %></p>
 
+  <%= f.hidden_field :destory_flag, :value => false %>
   <%= f.submit "商品を登録する", class:"btn btn-primary btn-block " %>
 
 <% end %>

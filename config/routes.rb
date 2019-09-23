@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index,:show,:edit,:destroy,:update]
     resources :orders, only: [:index,:show,:edit,:update]
-    resources :products
+    resources :products,only: [:index,:show,:edit,:new,:create,:update]
     resources :artists , only: [:create,:new]
     resources :labels , only: [:create,:new]
     resources :genres , only: [:create,:new]
     get 'products/search'
+    patch 'product/destroy/:id' => 'products#destroy',as: 'products/destory'
 
     get     'login',   to: 'sessions#new'
     post    'login',   to: 'sessions#create'

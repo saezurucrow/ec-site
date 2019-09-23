@@ -6,6 +6,7 @@
 
 <table class="table">
   <tr>
+    <th></th>
     <th>ジャケット</th>
     <th>アルバム名</th>
     <th>価格</th>
@@ -15,6 +16,11 @@
   </tr>
   <% @products.each do |product| %>
     <tr>
+      <td>
+        <% if product.destory_flag== true %>
+          <span style="color: red;">削除</span>
+        <% end %>
+      </td>
       <td><%= attachment_image_tag product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %></td>
       <td><%= product.name %></td>
       <td><%= (product.price * @TAX).floor %></td>

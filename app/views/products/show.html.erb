@@ -38,7 +38,7 @@
     この商品は売り切れです。
   <% else %>
     <%= form_for(@cart_item, url: add_item_path ) do |f| %>
-        <p>数量：<%= f.number_field :quantity,min:1 %></p>
+        <p>数量：<%= f.number_field :quantity,min:1,value:1 %></p>
         <%= f.hidden_field :product_id, :value => @product.id %>
         <p><%= f.submit "カートに追加", class: "btn btn-danger glyphicon glyphicon-shopping-cart" %></p>
     <% end %>

@@ -33,7 +33,6 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-
     if @product.save
       flash[:notice] = "投稿成功"
       redirect_to admin_product_path(@product)
@@ -58,7 +57,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    if @product.destroy
+    if @product.update(product_params)
       flash[:notice] = "削除成功"
       redirect_to admin_products_path
     else
@@ -71,7 +70,7 @@ class Admin::ProductsController < ApplicationController
 
     def product_params
         params.require(:product).permit(
-          :name,:price,:jacket,:stock,:product_status,:artist_id,:label_id,:genre_id,
+          :name,:price,:jacket,:stock,:product_status,:artist_id,:label_id,:genre_id,:destory_flag,
             discs_attributes: [:id, :disc_number,:_destroy,
               songs_attributes: [:id, :song_number,:name,:artist_id, :_destroy]]
         )
