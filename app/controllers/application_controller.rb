@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def tax
-    @TAX = 1.08
+    @TAX = 1.1
   end
 
   def after_sign_in_path_for(resource)
