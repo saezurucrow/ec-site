@@ -17,7 +17,7 @@
     <th>販売ステータス</th>
     <th></th>
   </tr>
-  <% @products.each do |product| %>
+  <% @products.reverse_order.each do |product| %>
     <tr>
       <td>
         <% if product.destory_flag== true %>

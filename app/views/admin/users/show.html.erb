@@ -1,8 +1,8 @@
-<h1><%= @user.last_name %><%= @user.first_name %>さんの詳細ページ</h1>
+<h1><%= attachment_image_tag @user, :image, :fill, 50, 50,fallback: "no_image.jpg" %><%= @user.last_name %><%= @user.first_name %>さんの詳細ページ</h1>
 
 <h2>情報</h2>
 
-<p>画像:<%= attachment_image_tag @user, :image, :fill, 50, 50,fallback: "no_image.jpg" %></p>
+
 <p>email:<%= @user.email %></p>
 
 <h2>登録住所</h2>
@@ -18,7 +18,7 @@
       <td><%= address.name %></td>
       <td><%= address.address_name %></td>
       <td><%= address.tel %></td>
-      <td><%= link_to '編集する' , edit_address_path(address) %></td>
+      <td></td>
     </tr>
   <% end %>
 </table>

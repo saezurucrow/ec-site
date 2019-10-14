@@ -1,21 +1,22 @@
-<h1>商品詳細ページ</h1>
 
-<div class="product-box">
-  <%= attachment_image_tag @product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img", fallback: "no_image.jpg" %>
+<div class="product-box row">
+  <%= attachment_image_tag @product, :jacket, :fill, 50, 50, format: 'jpeg', class: "product-img col-md-3", fallback: "no_image.jpg" %>
 
-  商品名：<%= @product.name %>
+  <div class="details col-md-9">
+    <p>商品名：<%= @product.name %></p>
 
-  アーティスト名<%= @product.artist_id %>
+    <p>アーティスト名:<%= @product.artist_id %></p>
 
-  ジャンル名：<%= @product.genre_id %>
+    <p>ジャンル名：<%= @product.genre_id %></p>
 
-  レーベル名：<%= @product.label_id %>
+    <p>レーベル名：<%= @product.label_id %></p>
 
-  在庫数：<%= @product.stock %>
+    <p>在庫数：<%= @product.stock %></p>
 
-  現在<%= @product.product_status %>
+    <p>ステータス：現在<%= @product.product_status %></p>
 
-  価格：<%= (@product.price * @TAX).floor %>円
+    <p>価格：<%= (@product.price * @TAX).floor %>円</p>
+  </div>
 </div>
 
 <h2>曲目</h2>
@@ -42,5 +43,7 @@
         <%= f.hidden_field :product_id, :value => @product.id %>
         <p><%= f.submit "カートに追加", class: "btn btn-danger glyphicon glyphicon-shopping-cart" %></p>
     <% end %>
-  <% end %>
+    <% end %>
+  <% else %>
+    <p>購入するにはログインしてください</p>
 <% end %>

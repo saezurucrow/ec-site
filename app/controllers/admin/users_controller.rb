@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :require_sign_in!
 
   def index
-    @users = Customer.all
+    @users = Customer.all.reverse_order.page(params[:page]).per(8)
   end
 
   def show

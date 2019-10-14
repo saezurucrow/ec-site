@@ -26,7 +26,7 @@
     </tbody>
 </table>
 
-合計金額:<%= (@sum_price * @TAX).floor + 500 %>円(送料含む)
+<b>合計金額:<%= (@sum_price * @TAX).floor + 500 %>円(送料含む)</b>
 
 <%= form_for(@order,url:orders_confirm_path)  do |f| %>
 
