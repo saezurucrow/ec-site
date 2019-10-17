@@ -2,4 +2,4 @@
 
 rails を使用して簡易的なショッピングサイトの作成
 
-URL:https://saezurucrow-ec-site.herokuapp.com/tig
+URL:https://saezurucrow-ec-site.herokuapp.com/
