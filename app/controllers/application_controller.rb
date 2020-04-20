@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -14,11 +16,11 @@ class ApplicationController < ActionController::Base
     @TAX = 1.1
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     if Address.find_by(customer_id: current_customer.id)
       products_path
     else
-      flash[:notice] = "住所を登録してください。"
+      flash[:notice] = '住所を登録してください。'
       new_address_path
     end
   end
@@ -59,19 +61,18 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def require_sign_in!
-      redirect_to admin_login_path unless signed_in?
-    end
+  def require_sign_in!
+    redirect_to admin_login_path unless signed_in?
+  end
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name,:last_name_kana,:first_name,:first_name_kana,:image,:postal_code,:address,:tel])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:last_name,:last_name_kana,:first_name,:first_name_kana,:image,:postal_code,:address,:tel])
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[last_name last_name_kana first_name first_name_kana image postal_code address tel])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[last_name last_name_kana first_name first_name_kana image postal_code address tel])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
+  end
 
-    def product_search
-      @q = Product.ransack(params[:q])
-      @products = @q.result(distinct: true).page(params[:page]).per(8)
-    end
-
+  def product_search
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true).page(params[:page]).per(8)
+  end
 end

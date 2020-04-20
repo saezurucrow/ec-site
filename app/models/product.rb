@@ -1,5 +1,6 @@
-class Product < ApplicationRecord
+# frozen_string_literal: true
 
+class Product < ApplicationRecord
   attachment :jacket
 
   has_many :cart_items
@@ -13,7 +14,7 @@ class Product < ApplicationRecord
   belongs_to :label
   belongs_to :genre
 
-  enum product_status:[:販売中, :販売停止中]
+  enum product_status: %i[販売中 販売停止中]
 
   validates :name, presence: true
   validates :price, presence: true

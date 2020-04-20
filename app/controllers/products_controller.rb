@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   def index
     @q = Product.ransack(params[:q])
@@ -10,6 +12,5 @@ class ProductsController < ApplicationController
     @cart_item = @product.cart_items.new
   end
 
-  def search
-  end
+  def search; end
 end

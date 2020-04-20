@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class Admin::SessionsController < ApplicationController
   before_action :set_admin, only: [:create]
   before_action :require_sign_in!, only: [:create]
 
-  def new
-  end
+  def new; end
 
   def create
     if @admin.authenticate(session_params[:password])
@@ -26,19 +27,19 @@ class Admin::SessionsController < ApplicationController
 
   private
 
-    def set_admin
-      @admin = Admin.find_by!(mail: session_params[:mail])
-    rescue
-      flash[:notice] = 'invalid_mail'
-      render action: 'new'
-    end
+  def set_admin
+    @admin = Admin.find_by!(mail: session_params[:mail])
+  rescue StandardError
+    flash[:notice] = 'invalid_mail'
+    render action: 'new'
+  end
 
-    def require_sign_in!
-      admin_login_path unless signed_in?
-    end
+  def require_sign_in!
+    admin_login_path unless signed_in?
+  end
 
-    # 許可するパラメータ
-    def session_params
-      params.require(:session).permit(:mail, :password)
-    end
+  # 許可するパラメータ
+  def session_params
+    params.require(:session).permit(:mail, :password)
+  end
 end

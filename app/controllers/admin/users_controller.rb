@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::UsersController < ApplicationController
   before_action :require_sign_in!
 
@@ -17,14 +19,13 @@ class Admin::UsersController < ApplicationController
   def update
     @user = Customer.find(params[:id])
     if @user.update(user_params)
-  	  redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user)
     else
       render :show
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
@@ -33,7 +34,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:customer).permit(:last_name,:last_name_kana,:first_name,:first_name_kana,
-                          :image,:email)
+    params.require(:customer).permit(:last_name, :last_name_kana, :first_name, :first_name_kana,
+                                     :image, :email)
   end
 end

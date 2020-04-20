@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class CartsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :setup_cart_item! ,only:[:add_item,:update_item,:delete_item]
+  before_action :setup_cart_item!, only: %i[add_item update_item delete_item]
 
   def show
     @cart_items = current_cart.cart_items
     @sum_price = 0
   end
 
- # 商品一覧画面から、「商品購入」を押した時のアクション
+  # 商品一覧画面から、「商品購入」を押した時のアクション
   def add_item
     if @cart_item.blank?
       @cart_item = current_cart.cart_items.build(product_id: params[:cart_item][:product_id])
@@ -16,10 +18,10 @@ class CartsController < ApplicationController
     if Product.find(params[:cart_item][:product_id]).stock >= params[:cart_item][:quantity].to_i
       @cart_item.quantity += params[:cart_item][:quantity].to_i
       @cart_item.save
-      flash[:notice] = "カートに追加しました。"
+      flash[:notice] = 'カートに追加しました。'
       redirect_to current_cart
     else
-      flash[:notice] = "在庫がありません。"
+      flash[:notice] = '在庫がありません。'
       redirect_to product_path(params[:cart_item][:product_id])
     end
   end

@@ -1,5 +1,6 @@
-class Label < ApplicationRecord
+# frozen_string_literal: true
 
+class Label < ApplicationRecord
   has_many :products
   accepts_nested_attributes_for :products
 

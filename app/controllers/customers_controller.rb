@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CustomersController < ApplicationController
   before_action :authenticate_customer!
   def show
@@ -10,14 +12,12 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if @customer == current_customer
     else
-      flash[:notice] = "ダメです。"
+      flash[:notice] = 'ダメです。'
       redirect_to customer_path(@customer)
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 
-  def update
-  end
+  def update; end
 end

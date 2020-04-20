@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveOrders < ActiveRecord::Migration[5.2]
   def change
     remove_column :orders, :postal_code, :string
